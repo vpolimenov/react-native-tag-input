@@ -122,6 +122,8 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
     maxHeight: PropTypes.number,
     onHeightChange: PropTypes.func,
     scrollViewProps: PropTypes.shape(ScrollView.propTypes),
+    textInputContainerStyle: ViewPropTypes.style,
+    textInputStyle: TextInput.propTypes.style,
   };
   props: Props<T>;
   state: State;
@@ -258,6 +260,8 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
         tagTextStyle={this.props.tagTextStyle}
         key={index}
         editable={this.props.editable}
+        textInputContainerStyle={this.props.textInputContainerStyle}
+        textInputStyle={this.props.textInputStyle}
       />
     ));
 
@@ -282,6 +286,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
               <View style={[
                 styles.textInputContainer,
                 { width: this.state.inputWidth },
+                this.props.textInputContainerStyle,
               ]}>
                 <TextInput
                   ref={this.tagInputRef}
@@ -291,7 +296,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
                   style={[styles.textInput, {
                     width: this.state.inputWidth,
                     color: this.props.inputColor,
-                  }]}
+                  }, this.props.textInputStyle]}
                   onBlur={Platform.OS === "ios" ? this.onBlur : undefined}
                   onChangeText={this.props.onChangeText}
                   autoCapitalize="none"
