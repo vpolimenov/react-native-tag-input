@@ -236,6 +236,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
   }
 
   scrollToEnd = () => {
+    if (this.props.flex) return;
     const scrollView = this.scrollView;
     invariant(
       scrollView,
