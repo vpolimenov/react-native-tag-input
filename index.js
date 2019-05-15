@@ -196,6 +196,11 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
     ) {
       this.props.onHeightChange(nextState.wrapperHeight);
     }
+
+    // LF: Workaround for bug where onKeyPress is called after onChangeText on Android
+    if (Platform.OS === 'android' && nextProps.text !== this.props.text) {
+      this.prevText = this.props.text;
+    }
   }
 
   measureWrapper = (event: { nativeEvent: { layout: { width: number } } }) => {
@@ -217,6 +222,11 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
   }
 
   onKeyPress = (event: { nativeEvent: { key: string } }) => {
+    // LF: Workaround for bug where onKeyPress is called after onChangeText on Android
+    if (Platform.OS === 'android' && this.prevText !== '' && this.props.text === '') {
+      this.prevText = '';
+      return;
+    }
     if (this.props.text !== '' || event.nativeEvent.key !== 'Backspace') {
       return;
     }
