@@ -125,6 +125,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
     textInputContainerStyle: ViewPropTypes.style,
     textInputStyle: TextInput.propTypes.style,
     flex: PropTypes.bool,
+    tagCloseIcon: PropTypes.node,
   };
   props: Props<T>;
   state: State;
@@ -265,6 +266,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
         editable={this.props.editable}
         textInputContainerStyle={this.props.textInputContainerStyle}
         textInputStyle={this.props.textInputStyle}
+        tagCloseIcon={this.props.tagCloseIcon}
       />
     ));
 
@@ -427,7 +429,7 @@ class Tag extends React.PureComponent<TagProps> {
             this.props.tagTextStyle,
           ]}>
             {this.props.label}
-            &nbsp;&times;
+            {<Text>&nbsp;{this.props.tagCloseIcon}</Text> || <Text>&nbsp;&times;</Text>}
         </Text>
       );
     }
