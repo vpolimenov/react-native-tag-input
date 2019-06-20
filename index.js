@@ -126,6 +126,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
     textInputStyle: TextInput.propTypes.style,
     flex: PropTypes.bool,
     tagCloseIcon: PropTypes.node,
+    hideInput: PropTypes.bool,
   };
   props: Props<T>;
   state: State;
@@ -238,6 +239,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
   }
 
   focus = () => {
+    if (this.props.hideInput) return;
     invariant(this.tagInput, "should be set");
     this.tagInput.focus();
   }
@@ -283,32 +285,34 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
     const content = (
       <View style={styles.tagInputContainer}>
         {tags}
-        <View style={[
-          styles.textInputContainer,
-          { width: this.state.inputWidth },
-          this.props.textInputContainerStyle,
-        ]}>
-          <TextInput
-            ref={this.tagInputRef}
-            blurOnSubmit={false}
-            onKeyPress={this.onKeyPress}
-            value={this.props.text}
-            style={[styles.textInput, {
-              width: this.state.inputWidth,
-              color: this.props.inputColor,
-            }, this.props.textInputStyle]}
-            onBlur={Platform.OS === "ios" ? this.onBlur : undefined}
-            onChangeText={this.props.onChangeText}
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Start typing"
-            returnKeyType="done"
-            keyboardType="default"
-            editable={this.props.editable}
-            underlineColorAndroid="rgba(0,0,0,0)"
-            {...this.props.inputProps}
-          />
-        </View>
+        {!this.props.hideInput ? (
+          <View style={[
+            styles.textInputContainer,
+            { width: this.state.inputWidth },
+            this.props.textInputContainerStyle,
+          ]}>
+            <TextInput
+              ref={this.tagInputRef}
+              blurOnSubmit={false}
+              onKeyPress={this.onKeyPress}
+              value={this.props.text}
+              style={[styles.textInput, {
+                width: this.state.inputWidth,
+                color: this.props.inputColor,
+              }, this.props.textInputStyle]}
+              onBlur={Platform.OS === "ios" ? this.onBlur : undefined}
+              onChangeText={this.props.onChangeText}
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholder="Start typing"
+              returnKeyType="done"
+              keyboardType="default"
+              editable={this.props.editable}
+              underlineColorAndroid="rgba(0,0,0,0)"
+              {...this.props.inputProps}
+            />
+          </View>
+        ) : null}
       </View>
     );
 
