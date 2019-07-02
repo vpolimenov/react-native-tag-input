@@ -127,6 +127,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
     flex: PropTypes.bool,
     tagCloseIcon: PropTypes.node,
     hideInput: PropTypes.bool,
+    hideTagCloseIcon: PropTypes.bool,
   };
   props: Props<T>;
   state: State;
@@ -279,6 +280,7 @@ class TagInput<T> extends React.PureComponent<Props<T>, State> {
         textInputContainerStyle={this.props.textInputContainerStyle}
         textInputStyle={this.props.textInputStyle}
         tagCloseIcon={this.props.tagCloseIcon}
+        hideTagCloseIcon={this.props.hideTagCloseIcon}
       />
     ));
 
@@ -443,9 +445,23 @@ class Tag extends React.PureComponent<TagProps> {
             this.props.tagTextStyle,
           ]}>
             {this.props.label}
-            {<Text>&nbsp;{this.props.tagCloseIcon}</Text> || <Text>&nbsp;&times;</Text>}
+            {this.props.hideTagCloseIcon ? null : this.props.tagCloseIcon ? <Text>&nbsp;{this.props.tagCloseIcon}</Text> : <Text>&nbsp;&times;</Text>}
         </Text>
       );
+    }
+    if (this.props.hideTagCloseIcon) {
+      return (
+        <View
+        onLayout={this.onLayoutLastTag}
+        style={[
+          styles.tag,
+          { backgroundColor: this.props.tagColor },
+          this.props.tagContainerStyle,
+        ]}
+        >
+          {tagLabel}
+        </View>
+      )
     }
     return (
       <TouchableOpacity
