@@ -694,14 +694,6 @@ declare module 'react-native/Libraries/Experimental/IncrementalPresenter' {
   declare module.exports: any;
 }
 
-declare module 'react-native/Libraries/Experimental/SwipeableRow/SwipeableListView' {
-  declare module.exports: any;
-}
-
-declare module 'react-native/Libraries/Experimental/SwipeableRow/SwipeableListViewDataSource' {
-  declare module.exports: any;
-}
-
 declare module 'react-native/Libraries/Experimental/SwipeableRow/SwipeableQuickActionButton' {
   declare module.exports: any;
 }
@@ -939,18 +931,6 @@ declare module 'react-native/Libraries/Lists/FillRateHelper' {
 }
 
 declare module 'react-native/Libraries/Lists/FlatList' {
-  declare module.exports: any;
-}
-
-declare module 'react-native/Libraries/Lists/ListView/__mocks__/ListViewMock' {
-  declare module.exports: any;
-}
-
-declare module 'react-native/Libraries/Lists/ListView/ListView' {
-  declare module.exports: any;
-}
-
-declare module 'react-native/Libraries/Lists/ListView/ListViewDataSource' {
   declare module.exports: any;
 }
 
@@ -3333,15 +3313,7 @@ declare module 'react-native/Libraries/Lists/FillRateHelper.js' {
 declare module 'react-native/Libraries/Lists/FlatList.js' {
   declare module.exports: $Exports<'react-native/Libraries/Lists/FlatList'>;
 }
-declare module 'react-native/Libraries/Lists/ListView/__mocks__/ListViewMock.js' {
-  declare module.exports: $Exports<'react-native/Libraries/Lists/ListView/__mocks__/ListViewMock'>;
-}
-declare module 'react-native/Libraries/Lists/ListView/ListView.js' {
-  declare module.exports: $Exports<'react-native/Libraries/Lists/ListView/ListView'>;
-}
-declare module 'react-native/Libraries/Lists/ListView/ListViewDataSource.js' {
-  declare module.exports: $Exports<'react-native/Libraries/Lists/ListView/ListViewDataSource'>;
-}
+
 declare module 'react-native/Libraries/Lists/MetroListView.js' {
   declare module.exports: $Exports<'react-native/Libraries/Lists/MetroListView'>;
 }
